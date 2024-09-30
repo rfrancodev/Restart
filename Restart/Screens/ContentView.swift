@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct ContentView: View {
-    @AppStorage("onboarding") var isOnboardingViewActives: Bool = true
+    @AppStorage("onboarding") var isOnboardingViewActive: Bool = true
     
     var body: some View {
-        VStack {
-            if isOnboardingViewActives {
+        ZStack {
+            if isOnboardingViewActive {
                 OnboardingView()
             } else {
                 HomeView()
