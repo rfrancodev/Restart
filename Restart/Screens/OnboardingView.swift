@@ -19,6 +19,8 @@ struct OnboardingView: View {
     @State private var indicatorOpacity: Double = 1.0
     @State private var textTitle: String = "Generosidade."
     
+    let hapficFeedback = UINotificationFeedbackGenerator()
+    
     //MARK: - BODY
 
     var body: some View {
@@ -156,9 +158,12 @@ struct OnboardingView: View {
                                 .onEnded { _ in
                                     withAnimation(Animation.easeOut(duration: 0.4)){
                                         if buttonOffset > buttonWidth / 2{
+                                            hapficFeedback.notificationOccurred(.success)
+                                            playSound(sound: "chimeup", type: "mp3")
                                             buttonOffset = buttonWidth - 80
                                             isOnboardingViewActive = false
                                         } else {
+                                            hapficFeedback.notificationOccurred(.warning)
                                             buttonOffset = 0
                                         }
                                     }
